@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rajasthan Cabs – Explore Rajasthan in Comfort & Style</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #4a7c59;
+    --green-light: #6aaa7e;
+    --green-pale: #d4e8da;
+    --beige: #f5f0e8;
+    --beige-dark: #e8dfd0;
+    --offwhite: #fafaf7;
+    --text-dark: #1a1a1a;
+    --text-mid: #4a4a4a;
+    --text-soft: #7a7a7a;
+    --white: #ffffff;
+    --shadow: 0 4px 24px rgba(74,124,89,0.10);
+    --shadow-lg: 0 12px 48px rgba(74,124,89,0.16);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --wa: #25D366;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--offwhite);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    height: 70px;
+    background: rgba(250,250,247,0.92);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(74,124,89,0.12);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 24px rgba(74,124,89,0.12); }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo-icon {
+    width: 38px; height: 38px; background: var(--green);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .nav-logo-text { font-family: 'Instrument Serif', serif; font-size: 1.2rem; color: var(--text-dark); letter-spacing: 0.02em; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--text-mid); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--green); }
+  .nav-cta {
+    background: var(--green); color: var(--white);
+    padding: 10px 22px; border-radius: 50px; font-size: 0.88rem; font-weight: 500;
+    text-decoration: none; transition: background 0.2s, transform 0.2s;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .nav-cta:hover { background: var(--green-light); transform: translateY(-1px); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--text-dark); border-radius: 2px; transition: 0.3s; }
+  .mobile-menu {
+    display: none; position: fixed; top: 70px; left: 0; right: 0; z-index: 999;
+    background: var(--offwhite); padding: 2rem 5vw;
+    flex-direction: column; gap: 1.2rem;
+    border-bottom: 1px solid var(--beige-dark);
+    animation: fadeDown 0.3s ease;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { text-decoration: none; color: var(--text-mid); font-size: 1rem; font-weight: 500; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--beige) 0%, var(--offwhite) 50%, var(--green-pale) 100%);
+    display: flex; align-items: center;
+    padding: 70px 5vw 0;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg-circle {
+    position: absolute; border-radius: 50%; opacity: 0.18;
+    animation: float 8s ease-in-out infinite;
+  }
+  .hero-bg-circle:nth-child(1) { width: 500px; height: 500px; background: var(--green); top: -100px; right: -100px; animation-delay: 0s; }
+  .hero-bg-circle:nth-child(2) { width: 300px; height: 300px; background: var(--green-light); bottom: 50px; left: -80px; animation-delay: -3s; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+  .hero-content { position: relative; z-index: 2; max-width: 680px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(74,124,89,0.1); border: 1px solid rgba(74,124,89,0.25);
+    color: var(--green); padding: 6px 16px; border-radius: 50px; font-size: 0.82rem; font-weight: 500;
+    margin-bottom: 1.5rem;
+    animation: fadeSlideUp 0.7s ease both;
+  }
+  .hero-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    line-height: 1.1; color: var(--text-dark);
+    animation: fadeSlideUp 0.7s ease 0.15s both;
+  }
+  .hero-title em { color: var(--green); font-style: italic; }
+  .hero-subtitle {
+    margin-top: 1.2rem; font-size: 1.05rem; color: var(--text-mid); line-height: 1.7; max-width: 520px;
+    animation: fadeSlideUp 0.7s ease 0.3s both;
+  }
+  .hero-actions {
+    margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeSlideUp 0.7s ease 0.45s both;
+  }
+  .btn-primary {
+    background: var(--green); color: var(--white);
+    padding: 14px 28px; border-radius: 50px; font-size: 0.95rem; font-weight: 500;
+    text-decoration: none; display: flex; align-items: center; gap: 8px;
+    transition: all 0.25s; box-shadow: 0 4px 20px rgba(74,124,89,0.3);
+  }
+  .btn-primary:hover { background: var(--green-light); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(74,124,89,0.35); }
+  .btn-secondary {
+    background: transparent; color: var(--text-dark);
+    padding: 14px 28px; border-radius: 50px; font-size: 0.95rem; font-weight: 500;
+    border: 1.5px solid var(--beige-dark); text-decoration: none;
+    transition: all 0.25s; display: flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+
+  /* Search Bar */
+  .hero-search {
+    margin-top: 2.5rem;
+    background: var(--white); border-radius: 20px;
+    padding: 1.2rem 1.5rem;
+    box-shadow: var(--shadow-lg);
+    display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end;
+    animation: fadeSlideUp 0.7s ease 0.6s both;
+    max-width: 620px;
+  }
+  .search-group { flex: 1; min-width: 140px; }
+  .search-group label { font-size: 0.75rem; font-weight: 600; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 4px; }
+  .search-group input, .search-group select {
+    width: 100%; border: none; background: var(--beige);
+    padding: 10px 14px; border-radius: 10px; font-size: 0.9rem; font-family: 'DM Sans', sans-serif;
+    color: var(--text-dark); outline: none;
+    transition: background 0.2s;
+  }
+  .search-group input:focus, .search-group select:focus { background: var(--green-pale); }
+  .search-btn {
+    background: var(--green); color: var(--white);
+    border: none; padding: 12px 24px; border-radius: 12px;
+    font-size: 0.9rem; font-weight: 600; cursor: pointer;
+    transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+  }
+  .search-btn:hover { background: var(--green-light); }
+
+  /* Stats */
+  .stats-row {
+    display: flex; gap: 2.5rem; margin-top: 2.5rem; flex-wrap: wrap;
+    animation: fadeSlideUp 0.7s ease 0.75s both;
+  }
+  .stat { text-align: left; }
+  .stat-number { font-family: 'Instrument Serif', serif; font-size: 2rem; color: var(--green); }
+  .stat-label { font-size: 0.8rem; color: var(--text-soft); font-weight: 500; margin-top: 2px; }
+
+  /* Hero image side */
+  .hero-visual {
+    position: absolute; right: 5vw; bottom: 0; width: 44vw; max-width: 600px;
+    animation: fadeSlideRight 0.9s ease 0.3s both;
+  }
+  .hero-visual img { width: 100%; display: block; }
+  .hero-car-card {
+    position: absolute; bottom: 40px; left: -30px;
+    background: var(--white); border-radius: 16px; padding: 14px 18px;
+    box-shadow: var(--shadow-lg); min-width: 180px;
+    animation: fadeSlideUp 1s ease 0.8s both;
+  }
+  .hero-car-card .badge { font-size: 0.7rem; background: var(--green-pale); color: var(--green); padding: 3px 10px; border-radius: 20px; font-weight: 600; display: inline-block; margin-bottom: 6px; }
+  .hero-car-card p { font-size: 0.85rem; font-weight: 600; color: var(--text-dark); }
+  .hero-car-card span { font-size: 0.78rem; color: var(--text-soft); }
+
+  @keyframes fadeSlideUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeSlideRight { from{opacity:0;transform:translateX(50px)} to{opacity:1;transform:translateX(0)} }
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ── SECTIONS COMMON ── */
+  section { padding: 90px 5vw; }
+  .section-label {
+    font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--green); margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.2; color: var(--text-dark);
+  }
+  .section-subtitle { color: var(--text-soft); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-top: 0.8rem; }
+  .section-header { margin-bottom: 3rem; }
+  .section-header.centered { text-align: center; }
+  .section-header.centered .section-subtitle { margin: 0.8rem auto 0; }
+
+  /* fade-in on scroll */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── DESTINATIONS ── */
+  #destinations { background: var(--beige); }
+  .dest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.2rem; }
+  .dest-card {
+    border-radius: var(--radius); overflow: hidden; position: relative;
+    aspect-ratio: 4/3; cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .dest-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .dest-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+  .dest-card:hover img { transform: scale(1.05); }
+  .dest-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,26,26,0.75) 0%, transparent 55%);
+    display: flex; align-items: flex-end; padding: 1.2rem;
+  }
+  .dest-name { color: var(--white); font-weight: 600; font-size: 1rem; }
+  .dest-sub { color: rgba(255,255,255,0.75); font-size: 0.78rem; }
+
+  /* ── FLEET ── */
+  #fleet { background: var(--offwhite); }
+  .fleet-tabs {
+    display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem;
+  }
+  .fleet-tab {
+    padding: 9px 20px; border-radius: 50px; font-size: 0.88rem; font-weight: 500;
+    border: 1.5px solid var(--beige-dark); background: transparent; color: var(--text-mid);
+    cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .fleet-tab.active, .fleet-tab:hover { background: var(--green); color: var(--white); border-color: var(--green); }
+  .fleet-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+  .car-card {
+    background: var(--white); border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow); transition: all 0.3s; border: 1px solid rgba(74,124,89,0.08);
+  }
+  .car-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .car-img {
+    width: 100%; aspect-ratio: 16/9; object-fit: cover; background: var(--beige);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem; position: relative; overflow: hidden;
+  }
+  .car-img img { width: 100%; height: 100%; object-fit: cover; }
+  .car-img .car-emoji { font-size: 3.5rem; }
+  .car-category-tag {
+    position: absolute; top: 12px; left: 12px;
+    background: rgba(255,255,255,0.92); color: var(--green);
+    font-size: 0.72rem; font-weight: 600; padding: 4px 10px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .car-info { padding: 1.2rem 1.4rem 1.4rem; }
+  .car-name { font-weight: 600; font-size: 1.05rem; color: var(--text-dark); margin-bottom: 4px; }
+  .car-meta { font-size: 0.82rem; color: var(--text-soft); display: flex; gap: 1rem; margin-bottom: 1rem; }
+  .car-meta span { display: flex; align-items: center; gap: 4px; }
+  .car-book {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--wa); color: var(--white);
+    padding: 11px 0; border-radius: 10px;
+    font-size: 0.88rem; font-weight: 600;
+    text-decoration: none; transition: all 0.2s; width: 100%;
+  }
+  .car-book:hover { background: #1da851; transform: translateY(-1px); }
+
+  /* ── WHY CHOOSE US ── */
+  #why { background: var(--green); }
+  #why .section-label { color: var(--green-pale); }
+  #why .section-title { color: var(--white); }
+  #why .section-subtitle { color: rgba(255,255,255,0.7); }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .why-card {
+    background: rgba(255,255,255,0.1); border-radius: var(--radius);
+    padding: 1.8rem; border: 1px solid rgba(255,255,255,0.15);
+    transition: background 0.3s;
+  }
+  .why-card:hover { background: rgba(255,255,255,0.18); }
+  .why-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .why-title { color: var(--white); font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem; }
+  .why-desc { color: rgba(255,255,255,0.68); font-size: 0.88rem; line-height: 1.6; }
+
+  /* ── HOW IT WORKS ── */
+  #how { background: var(--beige); }
+  .steps-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 2rem; }
+  .step { text-align: center; }
+  .step-num {
+    width: 56px; height: 56px; background: var(--green); color: var(--white);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: 'Instrument Serif', serif; font-size: 1.4rem; margin: 0 auto 1.2rem;
+  }
+  .step-title { font-weight: 600; font-size: 1rem; margin-bottom: 0.4rem; }
+  .step-desc { font-size: 0.85rem; color: var(--text-soft); line-height: 1.6; }
+
+  /* ── GALLERY ── */
+  #gallery { background: var(--offwhite); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 1rem;
+  }
+  .gallery-item { border-radius: var(--radius-sm); overflow: hidden; aspect-ratio: 4/3; }
+  .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+  .gallery-item:hover img { transform: scale(1.05); }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials { background: var(--beige); }
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+  .testi-card {
+    background: var(--white); border-radius: var(--radius); padding: 1.8rem;
+    box-shadow: var(--shadow); border: 1px solid rgba(74,124,89,0.08);
+    transition: transform 0.3s;
+  }
+  .testi-card:hover { transform: translateY(-4px); }
+  .testi-stars { color: #f5a623; font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 2px; }
+  .testi-text { font-size: 0.92rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 1.2rem; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar {
+    width: 40px; height: 40px; border-radius: 50%; background: var(--green-pale);
+    display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+  }
+  .testi-name { font-weight: 600; font-size: 0.88rem; }
+  .testi-place { font-size: 0.78rem; color: var(--text-soft); }
+
+  /* ── ABOUT ── */
+  #about { background: var(--offwhite); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-img-wrap { position: relative; }
+  .about-img-main { width: 100%; border-radius: 24px; aspect-ratio: 4/5; object-fit: cover; background: var(--beige); display: flex; align-items: center; justify-content: center; font-size: 5rem; }
+  .about-img-main img { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; }
+  .about-badge {
+    position: absolute; bottom: -20px; right: -20px;
+    background: var(--green); color: var(--white); border-radius: 16px;
+    padding: 1.2rem 1.5rem; text-align: center;
+  }
+  .about-badge-num { font-family: 'Instrument Serif', serif; font-size: 2rem; }
+  .about-badge-text { font-size: 0.78rem; opacity: 0.85; }
+  .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+  .about-feature { display: flex; align-items: flex-start; gap: 10px; }
+  .about-feature-icon { width: 32px; height: 32px; background: var(--green-pale); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .about-feature-text { font-size: 0.88rem; font-weight: 500; color: var(--text-mid); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--beige); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .contact-info-item { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 1.5rem; }
+  .contact-info-icon {
+    width: 44px; height: 44px; background: var(--green-pale); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;
+  }
+  .contact-info-label { font-size: 0.78rem; color: var(--text-soft); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-info-value { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); }
+  .wa-booking-card {
+    background: var(--white); border-radius: var(--radius); padding: 2rem;
+    box-shadow: var(--shadow); border: 1px solid rgba(74,124,89,0.1);
+  }
+  .wa-booking-card h3 { font-family: 'Instrument Serif', serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .wa-booking-card p { color: var(--text-soft); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.6; }
+  .wa-form-group { margin-bottom: 1rem; }
+  .wa-form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px; }
+  .wa-form-group input, .wa-form-group select, .wa-form-group textarea {
+    width: 100%; background: var(--beige); border: 1.5px solid var(--beige-dark);
+    padding: 11px 14px; border-radius: 10px; font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif; color: var(--text-dark); outline: none;
+    transition: border-color 0.2s;
+  }
+  .wa-form-group input:focus, .wa-form-group select:focus, .wa-form-group textarea:focus { border-color: var(--green); }
+  .wa-form-group textarea { height: 90px; resize: none; }
+  .wa-submit {
+    width: 100%; background: var(--wa); color: var(--white);
+    border: none; padding: 14px; border-radius: 12px;
+    font-size: 0.95rem; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+  }
+  .wa-submit:hover { background: #1da851; transform: translateY(-1px); }
+
+  /* ── TOURS PAGE SECTION ── */
+  #tours { background: var(--offwhite); }
+  .tours-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+  .tour-card {
+    background: var(--white); border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow); transition: all 0.3s; border: 1px solid rgba(74,124,89,0.08);
+  }
+  .tour-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .tour-img { width: 100%; aspect-ratio: 3/2; object-fit: cover; background: var(--beige); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
+  .tour-img img { width: 100%; height: 100%; object-fit: cover; }
+  .tour-info { padding: 1.2rem 1.4rem 1.4rem; }
+  .tour-tag { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green); margin-bottom: 6px; }
+  .tour-name { font-weight: 600; font-size: 1.05rem; margin-bottom: 0.4rem; }
+  .tour-desc { font-size: 0.85rem; color: var(--text-soft); line-height: 1.6; margin-bottom: 1rem; }
+  .tour-book {
+    display: flex; align-items: center; gap: 8px; color: var(--green);
+    font-size: 0.88rem; font-weight: 600; text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .tour-book:hover { gap: 12px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text-dark); color: rgba(255,255,255,0.7);
+    padding: 4rem 5vw 2rem;
+  }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-brand-name { font-family: 'Instrument Serif', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 0.8rem; }
+  .footer-brand-desc { font-size: 0.88rem; line-height: 1.7; margin-bottom: 1.2rem; }
+  .footer-wa {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--wa); color: var(--white);
+    padding: 10px 18px; border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .footer-wa:hover { background: #1da851; }
+  .footer-heading { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 1.2rem; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-links a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--green-light); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; }
+  .footer-copy { font-size: 0.82rem; }
+  .footer-legal { display: flex; gap: 1.5rem; }
+  .footer-legal a { color: rgba(255,255,255,0.45); font-size: 0.82rem; text-decoration: none; }
+
+  /* ── FLOATING WA BUTTON ── */
+  .wa-float {
+    position: fixed; bottom: 28px; right: 28px; z-index: 2000;
+    width: 58px; height: 58px; background: var(--wa);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 28px rgba(37,211,102,0.4); text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: pulse 3s ease-in-out infinite;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 36px rgba(37,211,102,0.55); animation: none; }
+  .wa-float svg { width: 28px; height: 28px; fill: white; }
+  @keyframes pulse { 0%,100%{box-shadow:0 6px 28px rgba(37,211,102,0.4)} 50%{box-shadow:0 6px 40px rgba(37,211,102,0.65)} }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero-visual { display: none; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item:nth-child(1) { grid-column: span 2; }
+  }
+  @media (max-width: 580px) {
+    .footer-top { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item:nth-child(1) { grid-column: span 1; }
+    .hero-title { font-size: 2.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#home">
+    <div class="nav-logo-icon">🚗</div>
+    <span class="nav-logo-text">RAJASTHAN CABS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#fleet">Our Fleet</a></li>
+    <li><a href="#tours">Tours</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20cab%20with%20Rajasthan%20Cabs." target="_blank">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Book Now
+  </a>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" onclick="toggleMenu()">Home</a>
+  <a href="#fleet" onclick="toggleMenu()">Our Fleet</a>
+  <a href="#tours" onclick="toggleMenu()">Tours</a>
+  <a href="#destinations" onclick="toggleMenu()">Destinations</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-circle"></div>
+  <div class="hero-bg-circle"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🏜️ Rajasthan's Most Trusted Cab Service</div>
+    <h1 class="hero-title">Explore Rajasthan<br>in <em>Comfort</em> & Style</h1>
+    <p class="hero-subtitle">From royal palaces to golden deserts — travel in premium comfort with our verified, air-conditioned fleet. Available 24/7 across all of Rajasthan & India.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20cab%20with%20Rajasthan%20Cabs." class="btn-primary" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Book via WhatsApp
+      </a>
+      <a href="#fleet" class="btn-secondary">View Fleet →</a>
+    </div>
+
+    <div class="hero-search">
+      <div class="search-group">
+        <label>From</label>
+        <input type="text" placeholder="Jaipur, Rajasthan">
+      </div>
+      <div class="search-group">
+        <label>To</label>
+        <input type="text" placeholder="Jodhpur, Udaipur...">
+      </div>
+      <div class="search-group">
+        <label>Date</label>
+        <input type="date">
+      </div>
+      <button class="search-btn" onclick="searchCab()">Search</button>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat"><div class="stat-number" data-target="500">0+</div><div class="stat-label">Happy Customers</div></div>
+      <div class="stat"><div class="stat-number" data-target="30">0+</div><div class="stat-label">Cars in Fleet</div></div>
+      <div class="stat"><div class="stat-number" data-target="10">0+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat"><div class="stat-number" data-target="24">0/7</div><div class="stat-label">Available 24/7</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section id="destinations">
+  <div class="section-header reveal">
+    <div class="section-label">Popular Routes</div>
+    <h2 class="section-title">Top Destinations<br>in Rajasthan</h2>
+    <p class="section-subtitle">From the Pink City to the Golden City, we cover every landmark across the Land of Kings.</p>
+  </div>
+  <div class="dest-grid">
+    <div class="dest-card reveal">
+      <img src="https://images.pexels.com/photos/3581369/pexels-photo-3581369.jpeg" alt="Jaipur" onerror="this.src='https://images.unsplash.com/photo-1597074866923-dc0589150358?w=600&q=80'">
+      <div class="dest-overlay"><div><div class="dest-name">Jaipur</div><div class="dest-sub">The Pink City</div></div></div>
+    </div>
+    <div class="dest-card reveal">
+      <img src="https://images.pexels.com/photos/7195782/pexels-photo-7195782.jpeg" alt="Udaipur">
+      <div class="dest-overlay"><div><div class="dest-name">Udaipur</div><div class="dest-sub">City of Lakes</div></div></div>
+    </div>
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600&q=80" alt="Jodhpur">
+      <div class="dest-overlay"><div><div class="dest-name">Jodhpur</div><div class="dest-sub">The Blue City</div></div></div>
+    </div>
+    <div class="dest-card reveal">
+      <img src="https://www.swantour.com/blogs/wp-content/uploads/2019/02/Jaisalmer-Fort.jpg" alt="Jaisalmer">
+      <div class="dest-overlay"><div><div class="dest-name">Jaisalmer</div><div class="dest-sub">The Golden City</div></div></div>
+    </div>
+    <div class="dest-card reveal">
+      <img src="https://plus.unsplash.com/premium_photo-1718570256515-8ff542703621?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHVzaGthcnxlbnwwfHwwfHx8MA%3D%3D" alt="Pushkar">
+      <div class="dest-overlay"><div><div class="dest-name">Pushkar</div><div class="dest-sub">Holy City</div></div></div>
+    </div>
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1710758677967-81636d14abf2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YWptZXJ8ZW58MHx8MHx8fDA%3D" alt="Ajmer">
+      <div class="dest-overlay"><div><div class="dest-name">Ajmer</div><div class="dest-sub">Heritage Hub</div></div></div>
+    </div>
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1504803184203-dd2dba6aa00e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bW91bnQlMjBhYnV8ZW58MHx8MHx8fDA%3D" alt="Mount Abu">
+      <div class="dest-overlay"><div><div class="dest-name">Mount Abu</div><div class="dest-sub">Hill Station</div></div></div>
+    </div>
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1725990076174-a3448eb86e76?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHJhbnRoYW1ib3JlfGVufDB8fDB8fHww" alt="Ranthambore">
+      <div class="dest-overlay"><div><div class="dest-name">Ranthambore</div><div class="dest-sub">Tiger Reserve</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FLEET -->
+<section id="fleet">
+  <div class="section-header reveal">
+    <div class="section-label">Our Fleet</div>
+    <h2 class="section-title">Choose Your<br>Perfect Ride</h2>
+    <p class="section-subtitle">From compact sedans for solo trips to spacious buses for group tours — we have the perfect vehicle for every journey.</p>
+  </div>
+  <div class="fleet-tabs">
+    <button class="fleet-tab active" onclick="filterFleet('all', this)">All Vehicles</button>
+    <button class="fleet-tab" onclick="filterFleet('sedan', this)">Sedan</button>
+    <button class="fleet-tab" onclick="filterFleet('mini-suv', this)">Mini SUV</button>
+    <button class="fleet-tab" onclick="filterFleet('suv', this)">SUV</button>
+    <button class="fleet-tab" onclick="filterFleet('tempo', this)">Tempo Traveller</button>
+    <button class="fleet-tab" onclick="filterFleet('urbania', this)">Urbania</button>
+    <button class="fleet-tab" onclick="filterFleet('bus', this)">Bus</button>
+  </div>
+  <div class="fleet-grid" id="fleetGrid">
+    <!-- Sedans -->
+    <div class="car-card reveal" data-category="sedan">
+      <div class="car-img" style="background:#f0f4f0">
+        <span class="car-category-tag">Sedan</span>
+        <img src="https://images.overdrive.in/wp-content/odgallery/2014/10/21144_etios-Img1-3_tcm303-277877-.jpg" alt="Eitos" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="car-emoji" style="display:none">🚗</span>
+      </div>
+      <div class="car-info">
+        <div class="car-name">Eitos</div>
+        <div class="car-meta"><span>👤 4 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20an%20Eitos%20(Sedan).%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="sedan">
+      <div class="car-img" style="background:#f0f4f0">
+        <span class="car-category-tag">Sedan</span>
+        <img src="https://www.v3cars.com/media/model-imgs/15592503-Dzire-front-exterior.webp" alt="Dzire" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Dzire</div>
+        <div class="car-meta"><span>👤 4 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20Dzire%20(Sedan).%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="sedan">
+      <div class="car-img" style="background:#f0f4f0">
+        <span class="car-category-tag">Sedan</span>
+        <img src="https://acko-cms.ackoassets.com/honda_amaze_features_explained_b88c78ad98.jpg" alt="Honda Amaze" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Honda Amaze</div>
+        <div class="car-meta"><span>👤 4 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20Honda%20Amaze%20(Sedan).%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="sedan">
+      <div class="car-img" style="background:#f0f4f0">
+        <span class="car-category-tag">Sedan</span>
+        <img src="https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/Aura/Highlights/pc/aurahighlight_top_pc.jpg" alt="Hyundai Aura" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Hyundai Aura</div>
+        <div class="car-meta"><span>👤 4 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20Hyundai%20Aura%20(Sedan).%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="sedan">
+      <div class="car-img" style="background:#f0f4f0">
+        <span class="car-category-tag">Sedan</span>
+        <img src="https://imgd.aeplcdn.com/642x361/n/cw/ec/176815/maruti-suzuki-ciaz-right-front-three-quarter1.jpeg?isig=0&q=75" alt="Maruti Ciaz" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Maruti Ciaz</div>
+        <div class="car-meta"><span>👤 4 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20Maruti%20Ciaz%20(Sedan).%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <!-- Mini SUVs -->
+    <div class="car-card reveal" data-category="mini-suv">
+      <div class="car-img" style="background:#eef4ee">
+        <span class="car-category-tag">Mini SUV</span>
+        <img src="https://images.unsplash.com/photo-1672820415487-c534a8ee22ff?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aHl1bmRhaSUyMHZlbnVlfGVufDB8fDB8fHww" alt="Hyundai Venue" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Hyundai Venue</div>
+        <div class="car-meta"><span>👤 5 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20Hyundai%20Venue%20(Mini%20SUV).%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="mini-suv">
+      <div class="car-img" style="background:#eef4ee">
+        <span class="car-category-tag">Mini SUV</span>
+        <img src="https://images.unsplash.com/photo-1748214547306-360d11024747?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aHl1bmRhaSUyMGNyZXRhfGVufDB8fDB8fHww" alt="Hyundai Creta" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Hyundai Creta</div>
+        <div class="car-meta"><span>👤 5 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20Hyundai%20Creta%20(Mini%20SUV).%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="mini-suv">
+      <div class="car-img" style="background:#eef4ee">
+        <span class="car-category-tag">Mini SUV</span>
+        <img src="https://images.unsplash.com/photo-1659406189166-7c17fe5df12a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a2lhJTIwc2VsdG9zfGVufDB8fDB8fHww" alt="Kia Seltos" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Kia Seltos</div>
+        <div class="car-meta"><span>👤 5 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20Kia%20Seltos%20(Mini%20SUV).%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <!-- SUVs -->
+    <div class="car-card reveal" data-category="suv">
+      <div class="car-img" style="background:#e8f0ea">
+        <span class="car-category-tag">SUV</span>
+        <img src="https://htcms-prod-images.s3.ap-south-1.amazonaws.com/htmobile1/marutisuzuki_ertiga/images/colour_marutisuzuki-ertiga_pearl-metallic-arctic-white_600x400.jpg" alt="Ertiga" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Ertiga</div>
+        <div class="car-meta"><span>👤 7 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20an%20Ertiga%20(SUV).%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="suv">
+      <div class="car-img" style="background:#e8f0ea">
+        <span class="car-category-tag">SUV</span>
+        <img src="https://stimg.cardekho.com/images/carexteriorimages/930x620/Toyota/Toyota-Innova/1174/1544523709266/front-left-side-47.jpg" alt="Innova" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Innova</div>
+        <div class="car-meta"><span>👤 7 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20an%20Innova%20(SUV).%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="suv">
+      <div class="car-img" style="background:#e8f0ea">
+        <span class="car-category-tag">SUV</span>
+        <img src="https://static.toyotabharat.com/images/showroom/innova-mmc/unrivaled-upgrades-banner1600x1000.jpg" alt="Innova Crysta" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Innova Crysta</div>
+        <div class="car-meta"><span>👤 7 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20an%20Innova%20Crysta%20(SUV).%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="suv">
+      <div class="car-img" style="background:#e8f0ea">
+        <span class="car-category-tag">SUV</span>
+        <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/107539/exterior-right-front-three-quarter.jpeg?isig=0&q=80" alt="Kia Carens" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Kia Carens</div>
+        <div class="car-meta"><span>👤 6-7 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20Kia%20Carens%20(SUV).%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="suv">
+      <div class="car-img" style="background:#e8f0ea">
+        <span class="car-category-tag">SUV</span>
+        <img src="https://images.autox.com/uploads/2020/04/mahindra-scorpio-bs6-500x261.jpg" alt="Scorpio" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Scorpio</div>
+        <div class="car-meta"><span>👤 7 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20Scorpio%20(SUV).%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="suv">
+      <div class="car-img" style="background:#e8f0ea">
+        <span class="car-category-tag">SUV</span>
+        <img src="https://imgd.aeplcdn.com/1056x594/n/k7tcbeb_1756915.jpg?q=80" alt="Scorpio N" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Scorpio N</div>
+        <div class="car-meta"><span>👤 7 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20Scorpio%20N%20(SUV).%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="suv">
+      <div class="car-img" style="background:#e8f0ea">
+        <span class="car-category-tag">SUV</span>
+        <img src="https://images.unsplash.com/photo-1710225358761-4f5891df657d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGhhcnxlbnwwfHwwfHx8MA%3D%3D" alt="Mahindra Thar" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Mahindra Thar</div>
+        <div class="car-meta"><span>👤 4 Seater</span><span>🏔️ 4x4</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20Mahindra%20Thar%20(SUV).%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <!-- Tempos -->
+    <div class="car-card reveal" data-category="tempo">
+      <div class="car-img" style="background:#eaf2ec">
+        <span class="car-category-tag">Tempo</span>
+        <img src="https://arunodayatravels.com/wp-content/uploads/2025/11/13-Seater-Tempo-Traveller-for-Rent-in-Bangalore.webp" alt="Tempo 12 Seater" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Tempo 12 Seater</div>
+        <div class="car-meta"><span>👥 12 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20Tempo%20Traveller%2012%20Seater.%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="tempo">
+      <div class="car-img" style="background:#eaf2ec">
+        <span class="car-category-tag">Tempo</span>
+        <img src="https://thrissurtravellertaxi.com/wp-content/uploads/2023/06/Tempo-traveller-rent-1.jpg" alt="Tempo 17 Seater" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Tempo 17 Seater</div>
+        <div class="car-meta"><span>👥 17 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20Tempo%20Traveller%2017%20Seater.%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="tempo">
+      <div class="car-img" style="background:#eaf2ec">
+        <span class="car-category-tag">Tempo</span>
+        <img src="https://www.jcrcab.com/wp-content/uploads/2020/07/21-Seater-Tempo-Traveller.png" alt="Tempo 21 Seater" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Tempo 21 Seater</div>
+        <div class="car-meta"><span>👥 21 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20Tempo%20Traveller%2021%20Seater.%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="tempo">
+      <div class="car-img" style="background:#eaf2ec">
+        <span class="car-category-tag">Tempo</span>
+        <img src="https://www.truetravelsvacation.com/wkiadmin/images/services/category_2025-09-07_12:51:19.jpeg" alt="Tempo 25 Seater" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Tempo 25 Seater</div>
+        <div class="car-meta"><span>👥 25 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20Tempo%20Traveller%2025%20Seater.%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <!-- Urbania -->
+    <div class="car-card reveal" data-category="urbania">
+      <div class="car-img" style="background:#e6f0e8">
+        <span class="car-category-tag">Urbania</span>
+        <img src="https://buscdn.cardekho.com/in/force/urbania/force-urbania.jpg?impolicy=resize&imwidth=480" alt="Urbania 12" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Urbania 12 Seater</div>
+        <div class="car-meta"><span>👥 12 Seater</span><span>❄️ Luxury AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20an%20Urbania%2012%20Seater.%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="urbania">
+      <div class="car-img" style="background:#e6f0e8">
+        <span class="car-category-tag">Urbania</span>
+        <img src="https://keralacars.in/wp-content/uploads/2024/02/Force-Urbania-Van.jpg" alt="Urbania 17" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Urbania 17 Seater</div>
+        <div class="car-meta"><span>👥 17 Seater</span><span>❄️ Luxury AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20an%20Urbania%2017%20Seater.%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="urbania">
+      <div class="car-img" style="background:#e6f0e8">
+        <span class="car-category-tag">Urbania</span>
+        <img src="https://goldenwheels.in/wp-content/uploads/2024/10/46723_Force-Urbania-16.jpeg" alt="Urbania 21" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Urbania 21 Seater</div>
+        <div class="car-meta"><span>👥 21 Seater</span><span>❄️ Luxury AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20an%20Urbania%2021%20Seater.%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <!-- Buses -->
+    <div class="car-card reveal" data-category="bus">
+      <div class="car-img" style="background:#e4eee6">
+        <span class="car-category-tag">Bus</span>
+        <img src="https://img.freepik.com/free-photo/traffic-vehicle-urban-reflections-city_1112-973.jpg?semt=ais_rp_progressive&w=740&q=80" alt="35 Seater Bus" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Bus – 35 Seater</div>
+        <div class="car-meta"><span>👥 35 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%2035%20Seater%20Bus.%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="bus">
+      <div class="car-img" style="background:#e4eee6">
+        <span class="car-category-tag">Bus</span>
+        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=80" alt="45 Seater Bus" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Bus – 45 Seater</div>
+        <div class="car-meta"><span>👥 45 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%2045%20Seater%20Bus.%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.642-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="bus">
+      <div class="car-img" style="background:#e4eee6">
+        <span class="car-category-tag">Bus</span>
+        <img src="https://images.unsplash.com/photo-1570125909517-53cb21c89ff2?w=600&q=80" alt="55 Seater Bus" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Bus – 55 Seater</div>
+        <div class="car-meta"><span>👥 55 Seater</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%2055%20Seater%20Bus.%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="car-card reveal" data-category="bus">
+      <div class="car-img" style="background:#e4eee6">
+        <span class="car-category-tag">Bus</span>
+        <img src="https://images.pexels.com/photos/32699581/pexels-photo-32699581.jpeg" alt="Sleeper Coach" onerror="this.style.display='none'">
+      </div>
+      <div class="car-info">
+        <div class="car-name">Sleeper Coach</div>
+        <div class="car-meta"><span>🛌 Sleeper Berths</span><span>❄️ AC</span></div>
+        <a class="car-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20Sleeper%20Coach.%20Please%20let%20me%20know%20the%20availability%20and%20rates." target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <div class="section-header centered reveal">
+    <div class="section-label">Why Choose Us</div>
+    <h2 class="section-title">Rajasthan's Most Trusted<br>Travel Partner</h2>
+    <p class="section-subtitle">We've been serving travellers across Rajasthan with dedication, safety, and genuine hospitality.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal"><div class="why-icon">✅</div><div class="why-title">Verified & Licensed Drivers</div><div class="why-desc">All our drivers are background-checked, licensed, and trained for long-distance tourism routes across Rajasthan.</div></div>
+    <div class="why-card reveal"><div class="why-icon">❄️</div><div class="why-title">AC Comfortable Fleet</div><div class="why-desc">Every vehicle in our fleet is fully air-conditioned and maintained for maximum comfort on long journeys.</div></div>
+    <div class="why-card reveal"><div class="why-icon">🕐</div><div class="why-title">On-Time, Every Time</div><div class="why-desc">We respect your schedule. Our drivers are punctual and ensure you reach your destination on time, every time.</div></div>
+    <div class="why-card reveal"><div class="why-icon">💬</div><div class="why-title">Instant WhatsApp Booking</div><div class="why-desc">No lengthy forms. Book your cab instantly via WhatsApp and get confirmation within minutes from Girraj Sir.</div></div>
+    <div class="why-card reveal"><div class="why-icon">💰</div><div class="why-title">Transparent Pricing</div><div class="why-desc">What we quote is what you pay. No hidden charges, no surprise fees — complete transparency guaranteed.</div></div>
+    <div class="why-card reveal"><div class="why-icon">🗺️</div><div class="why-title">Local Rajasthan Experts</div><div class="why-desc">Born and raised in Rajasthan, our team knows every shortcut, every hidden gem, and every must-see spot.</div></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-header centered reveal">
+    <div class="section-label">Process</div>
+    <h2 class="section-title">Book Your Ride<br>in 3 Simple Steps</h2>
+  </div>
+  <div class="steps-row">
+    <div class="step reveal"><div class="step-num">1</div><div class="step-title">Choose Your Vehicle</div><div class="step-desc">Browse our fleet and select the perfect vehicle for your group size and travel style.</div></div>
+    <div class="step reveal"><div class="step-num">2</div><div class="step-title">Click Book on WhatsApp</div><div class="step-desc">Hit the "Book Now" button. A pre-written WhatsApp message with your car details will open automatically.</div></div>
+    <div class="step reveal"><div class="step-num">3</div><div class="step-title">Get Confirmed</div><div class="step-desc">Girraj Sir will respond quickly with availability confirmation and your final travel details.</div></div>
+    <div class="step reveal"><div class="step-num">4</div><div class="step-title">Enjoy Rajasthan!</div><div class="step-desc">Sit back, relax, and let us show you the royal beauty of the Land of Kings.</div></div>
+  </div>
+</section>
+
+<!-- TOURS -->
+<section id="tours">
+  <div class="section-header reveal">
+    <div class="section-label">Tour Packages</div>
+    <h2 class="section-title">Curated Rajasthan<br>Tour Packages</h2>
+    <p class="section-subtitle">Let us design the perfect Rajasthan journey for you — from golden desert sunsets to majestic fort explorations.</p>
+  </div>
+  <div class="tours-grid">
+    <div class="tour-card reveal">
+      <div class="tour-img"><img src="https://images.unsplash.com/photo-1631867675167-90a456a90863?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJhamFzdGhhbnxlbnwwfHwwfHx8MA%3D%3D" alt="Golden Triangle"></div>
+      <div class="tour-info">
+        <div class="tour-tag">3 Days • Most Popular</div>
+        <div class="tour-name">Golden Triangle Rajasthan</div>
+        <div class="tour-desc">Jaipur → Ajmer → Pushkar. Experience the soul of Rajasthan in three magical days.</div>
+        <a class="tour-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20am%20interested%20in%20the%20Golden%20Triangle%20Rajasthan%20Tour%20Package.%20Please%20share%20the%20details." target="_blank">Enquire Now →</a>
+      </div>
+    </div>
+    <div class="tour-card reveal">
+      <div class="tour-img"><img src="https://rajwadadesertcamp.com/wp-content/uploads/2022/11/quad.jpg" alt="Desert Safari"></div>
+      <div class="tour-info">
+        <div class="tour-tag">5 Days • Adventure</div>
+        <div class="tour-name">Jaisalmer Desert Safari Tour</div>
+        <div class="tour-desc">Experience the golden sand dunes, camel rides, and star-lit desert nights of Jaisalmer.</div>
+        <a class="tour-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20am%20interested%20in%20the%20Jaisalmer%20Desert%20Safari%20Tour%20Package.%20Please%20share%20the%20details." target="_blank">Enquire Now →</a>
+      </div>
+    </div>
+    <div class="tour-card reveal">
+      <div class="tour-img"><img src="https://plus.unsplash.com/premium_photo-1697729728192-c94f0bfa5b75?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHVkYWlwdXIlMjBsYWtlc3xlbnwwfHwwfHx8MA%3D%3D" alt="Lakes Tour"></div>
+      <div class="tour-info">
+        <div class="tour-tag">4 Days • Romantic</div>
+        <div class="tour-name">Udaipur Lakes & Palaces</div>
+        <div class="tour-desc">The city of lakes awaits — boat rides, palace visits, and Rajasthani cuisine in the City of Love.</div>
+        <a class="tour-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20am%20interested%20in%20the%20Udaipur%20Lakes%20%26%20Palaces%20Tour%20Package.%20Please%20share%20the%20details." target="_blank">Enquire Now →</a>
+      </div>
+    </div>
+    <div class="tour-card reveal">
+      <div class="tour-img"><img src="https://images.unsplash.com/photo-1700562554203-5b8644512759?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFudGhhbWJvcmUlMjBuYXRpb25hbCUyMHBhcmt8ZW58MHx8MHx8fDA%3D" alt="Wildlife Tour"></div>
+      <div class="tour-info">
+        <div class="tour-tag">3 Days • Wildlife</div>
+        <div class="tour-name">Ranthambore Tiger Safari</div>
+        <div class="tour-desc">Spot the majestic Bengal Tiger in its natural habitat at Ranthambore National Park.</div>
+        <a class="tour-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20am%20interested%20in%20the%20Ranthambore%20Tiger%20Safari%20Tour%20Package.%20Please%20share%20the%20details." target="_blank">Enquire Now →</a>
+      </div>
+    </div>
+    <div class="tour-card reveal">
+      <div class="tour-img"><img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600&q=80" alt="Forts Tour"></div>
+      <div class="tour-info">
+        <div class="tour-tag">7 Days • Heritage</div>
+        <div class="tour-name">Rajasthan Forts & Palaces</div>
+        <div class="tour-desc">Amber Fort, Mehrangarh, Chittorgarh — a week-long journey through royal Rajasthan.</div>
+        <a class="tour-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20am%20interested%20in%20the%20Rajasthan%20Forts%20%26%20Palaces%20Tour%20Package.%20Please%20share%20the%20details." target="_blank">Enquire Now →</a>
+      </div>
+    </div>
+    <div class="tour-card reveal">
+      <div class="tour-img"><img src="https://images.unsplash.com/photo-1611076763501-55d80ccc93cb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bW91bnQlMjBhYnV8ZW58MHx8MHx8fDA%3D" alt="Hill Station"></div>
+      <div class="tour-info">
+        <div class="tour-tag">2 Days • Relaxing</div>
+        <div class="tour-name">Mount Abu Escape</div>
+        <div class="tour-desc">Rajasthan's only hill station — cool breezes, Dilwara Temples, and Nakki Lake await you.</div>
+        <a class="tour-book" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20am%20interested%20in%20the%20Mount%20Abu%20Escape%20Tour%20Package.%20Please%20share%20the%20details." target="_blank">Enquire Now →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-header centered reveal">
+    <div class="section-label">Gallery</div>
+    <h2 class="section-title">Rajasthan Through Our Lens</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item"><img src="https://plus.unsplash.com/premium_photo-1697730293007-8e45c574b590?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8amFpcHVyJTIwcGFsYWNlfGVufDB8fDB8fHww" alt="Jaipur Palace"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1709620220232-12ecd7ca33a8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8amFpc2FsbWVyfGVufDB8fDB8fHww" alt="Jaisalmer"></div>
+    <div class="gallery-item"><img src="https://plus.unsplash.com/premium_photo-1697730421382-bc8dd92f83ba?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8am9kaHB1cnxlbnwwfHwwfHx8MA%3D%3D" alt="Jodhpur"></div>
+    <div class="gallery-item"><img src="https://plus.unsplash.com/premium_photo-1697730345611-4568df7852ac?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHVkYWlwdXJ8ZW58MHx8MHx8fDA%3D" alt="Udaipur"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1667572838728-b48773f67d07?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cHVzaGthcnxlbnwwfHwwfHx8MA%3D%3D" alt="Pushkar"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1565970112373-9d89e93618f9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHJhbnRoYW1ib3JlfGVufDB8fDB8fHww" alt="Ranthambore"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1630825828081-e80577f6e2df?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW91bnQlMjBhYnV8ZW58MHx8MHx8fDA%3D" alt="Mount Abu"></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-header centered reveal">
+    <div class="section-label">Testimonials</div>
+    <h2 class="section-title">What Our Travellers Say</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Girraj Sir was an exceptional driver-guide. He knew every corner of Jaipur and made our family trip absolutely unforgettable. The Innova Crysta was spotlessly clean and very comfortable."</div>
+      <div class="testi-author"><div class="testi-avatar">👩</div><div><div class="testi-name">Priya Sharma</div><div class="testi-place">Delhi • Jaipur Tour</div></div></div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Booked the Tempo 17 Seater for our corporate team outing to Udaipur. The vehicle was in excellent condition and the driver was professional and punctual. Highly recommended!"</div>
+      <div class="testi-author"><div class="testi-avatar">👨</div><div><div class="testi-name">Rohit Gupta</div><div class="testi-place">Mumbai • Corporate Trip</div></div></div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"The WhatsApp booking system is so convenient. Got confirmed within 10 minutes! Traveled Jaisalmer desert in the Scorpio N — what a beast of a car for the dunes!"</div>
+      <div class="testi-author"><div class="testi-avatar">👩</div><div><div class="testi-name">Ankita Verma</div><div class="testi-place">Pune • Jaisalmer Desert</div></div></div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Used Rajasthan Cabs for our 7-day Rajasthan heritage tour with family of 5. The Innova Crysta was perfect. Girraj Sir's local knowledge made the trip extra special."</div>
+      <div class="testi-author"><div class="testi-avatar">👨</div><div><div class="testi-name">Vikram Patel</div><div class="testi-place">Ahmedabad • Heritage Tour</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap reveal">
+      <div class="about-img-main">
+        <img src="https://images.unsplash.com/photo-1668438773815-d54ce8c6372f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aGF3YW1haGFsfGVufDB8fDB8fHww" alt="About Rajasthan Cabs">
+      </div>
+      <div class="about-badge">
+        <div class="about-badge-num">10+</div>
+        <div class="about-badge-text">Years of Service</div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="section-label">About Us</div>
+      <h2 class="section-title">Rajasthan's Heart,<br>Delivered to You</h2>
+      <p style="color:var(--text-mid);line-height:1.8;margin-top:1rem;font-size:0.96rem">
+        Rajasthan Cabs was founded by <strong>Girraj Singh Chouhan</strong> with a simple vision — to give every traveller an authentic, comfortable, and safe Rajasthan experience. With over a decade of experience serving tourists from across India and abroad, we are proud to be one of the most trusted cab services in Rajasthan.
+      </p>
+      <p style="color:var(--text-mid);line-height:1.8;margin-top:1rem;font-size:0.96rem">
+        Whether you're planning a family holiday, a corporate retreat, or a solo adventure across the desert landscape — we have the perfect vehicle and the deepest local knowledge to make every mile memorable.
+      </p>
+      <div class="about-features">
+        <div class="about-feature"><div class="about-feature-icon">🚗</div><div class="about-feature-text">30+ Vehicles in Fleet</div></div>
+        <div class="about-feature"><div class="about-feature-icon">✅</div><div class="about-feature-text">Verified & Licensed</div></div>
+        <div class="about-feature"><div class="about-feature-icon">🗺️</div><div class="about-feature-text">Pan-Rajasthan Coverage</div></div>
+        <div class="about-feature"><div class="about-feature-icon">💬</div><div class="about-feature-text">24/7 WhatsApp Support</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header reveal">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Ready to Explore<br>Rajasthan?</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="contact-info-item">
+        <div class="contact-info-icon">👤</div>
+        <div><div class="contact-info-label">Owner & Driver</div><div class="contact-info-value">Girraj Singh Chouhan</div></div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">📱</div>
+        <div><div class="contact-info-label">WhatsApp Booking</div><div class="contact-info-value">+91 98283 97500</div></div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">📞</div>
+        <div><div class="contact-info-label">Phone Call</div><div class="contact-info-value">+91 98283 97500</div></div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">📍</div>
+        <div><div class="contact-info-label">Based In</div><div class="contact-info-value">Jaipur, Rajasthan, India</div></div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">🕐</div>
+        <div><div class="contact-info-label">Availability</div><div class="contact-info-value">24 Hours / 7 Days a Week</div></div>
+      </div>
+      <a class="btn-primary" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20enquire%20about%20cab%20booking%20with%20Rajasthan%20Cabs." target="_blank" style="display:inline-flex;margin-top:1rem">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat on WhatsApp Now
+      </a>
+    </div>
+    <div class="wa-booking-card reveal">
+      <h3>Send a Booking Enquiry</h3>
+      <p>Fill in your details and we'll open a pre-filled WhatsApp message to Girraj Sir for you!</p>
+      <div class="wa-form-group">
+        <label>Your Name</label>
+        <input type="text" id="f-name" placeholder="Enter your full name">
+      </div>
+      <div class="wa-form-group">
+        <label>Select Vehicle</label>
+        <select id="f-car">
+          <option value="">-- Choose a vehicle --</option>
+          <optgroup label="Sedan"><option>Eitos</option><option>Dzire</option><option>Honda Amaze</option><option>Hyundai Aura</option><option>Maruti Ciaz</option></optgroup>
+          <optgroup label="Mini SUV"><option>Hyundai Venue</option><option>Hyundai Creta</option><option>Kia Seltos</option></optgroup>
+          <optgroup label="SUV"><option>Ertiga</option><option>Innova</option><option>Innova Crysta</option><option>Kia Carens</option><option>Scorpio</option><option>Scorpio N</option><option>Mahindra Thar</option></optgroup>
+          <optgroup label="Tempo Traveller"><option>Tempo 12 Seater</option><option>Tempo 17 Seater</option><option>Tempo 21 Seater</option><option>Tempo 25 Seater</option></optgroup>
+          <optgroup label="Urbania"><option>Urbania 12 Seater</option><option>Urbania 17 Seater</option><option>Urbania 21 Seater</option></optgroup>
+          <optgroup label="Bus"><option>Bus 35 Seater</option><option>Bus 45 Seater</option><option>Bus 55 Seater</option><option>Sleeper Coach</option></optgroup>
+        </select>
+      </div>
+      <div class="wa-form-group">
+        <label>Travel Date</label>
+        <input type="date" id="f-date">
+      </div>
+      <div class="wa-form-group">
+        <label>From → To</label>
+        <input type="text" id="f-route" placeholder="e.g. Jaipur → Udaipur">
+      </div>
+      <div class="wa-form-group">
+        <label>Additional Notes (optional)</label>
+        <textarea id="f-notes" placeholder="Any special requirements..."></textarea>
+      </div>
+      <button class="wa-submit" onclick="sendWhatsApp()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Send via WhatsApp to Girraj Sir
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">🚗 RAJASTHAN CABS</div>
+      <div class="footer-brand-desc">Explore Rajasthan in Comfort & Style. Rajasthan's most trusted cab service, serving travellers since 2014 with safety, reliability, and genuine hospitality.</div>
+      <a class="footer-wa" href="https://wa.me/919828397500" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        +91 98283 97500
+      </a>
+    </div>
+    <div>
+      <div class="footer-heading">Navigation</div>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#fleet">Our Fleet</a></li>
+        <li><a href="#tours">Tours</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Fleet</div>
+      <ul class="footer-links">
+        <li><a href="#fleet">Sedan Cars</a></li>
+        <li><a href="#fleet">Mini SUVs</a></li>
+        <li><a href="#fleet">SUVs</a></li>
+        <li><a href="#fleet">Tempo Traveller</a></li>
+        <li><a href="#fleet">Urbania</a></li>
+        <li><a href="#fleet">Buses</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Destinations</div>
+      <ul class="footer-links">
+        <li><a href="#">Jaipur</a></li>
+        <li><a href="#">Udaipur</a></li>
+        <li><a href="#">Jodhpur</a></li>
+        <li><a href="#">Jaisalmer</a></li>
+        <li><a href="#">Pushkar</a></li>
+        <li><a href="#">Mount Abu</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Rajasthan Cabs. All rights reserved. Owner: Girraj Singh Chouhan</div>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a class="wa-float" href="https://wa.me/919828397500?text=Hello%20Girraj%20Sir%2C%20I%20would%20like%20to%20book%20a%20cab%20with%20Rajasthan%20Cabs." target="_blank" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  // NAV scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Fleet filter
+  function filterFleet(cat, btn) {
+    document.querySelectorAll('.fleet-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.car-card').forEach(c => {
+      c.style.display = (cat === 'all' || c.dataset.category === cat) ? 'block' : 'none';
+    });
+  }
+
+  // Animated stats counter
+  function animateCounter(el, target, suffix) {
+    let count = 0;
+    const step = Math.ceil(target / 50);
+    const timer = setInterval(() => {
+      count = Math.min(count + step, target);
+      el.textContent = count + suffix;
+      if (count >= target) clearInterval(timer);
+    }, 30);
+  }
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const stats = entry.target.querySelectorAll('[data-target]');
+        stats.forEach(s => {
+          const t = parseInt(s.dataset.target);
+          const text = s.textContent;
+          const suffix = text.includes('/') ? '/7' : '+';
+          animateCounter(s, t, suffix);
+        });
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  const statsRow = document.querySelector('.stats-row');
+  if (statsRow) statsObserver.observe(statsRow);
+
+  // Search cab
+  function searchCab() {
+    const from = document.querySelector('.hero-search input:nth-of-type(1)').value || 'Jaipur';
+    const to = document.querySelector('.hero-search input:nth-of-type(2)').value || 'your destination';
+    const msg = `Hello Girraj Sir, I would like to book a cab from ${from} to ${to}. Please let me know the available vehicles and rates.`;
+    window.open('https://wa.me/919828397500?text=' + encodeURIComponent(msg), '_blank');
+  }
+
+  // WA form submission
+  function sendWhatsApp() {
+    const name = document.getElementById('f-name').value || 'A customer';
+    const car = document.getElementById('f-car').value || 'Not specified';
+    const date = document.getElementById('f-date').value || 'Not specified';
+    const route = document.getElementById('f-route').value || 'Not specified';
+    const notes = document.getElementById('f-notes').value || '';
+    const msg = `Hello Girraj Sir,\n\nI would like to make a booking enquiry:\n\n👤 Name: ${name}\n🚗 Vehicle: ${car}\n📅 Date: ${date}\n🗺️ Route: ${route}${notes ? '\n📝 Notes: ' + notes : ''}\n\nKindly confirm availability and rates. Thank you!`;
+    window.open('https://wa.me/919828397500?text=' + encodeURIComponent(msg), '_blank');
+  }
+</script>
+</body>
+</html>
